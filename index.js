@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   const openRadioModalBtn = document.getElementById("open-radio-modal");
-  const RadioModal = document.getElementById("radio-modal");
+  const radioModal = document.getElementById("radio-modal");
   const closeRadioModalBtn = document.getElementById("close-radio-modal");
 
   if (sky) {
@@ -77,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   openRadioModalBtn.addEventListener("click", () => {
-    RadioModal.style.display = "block";
+    radioModal.style.display = "block";
   });
 
   closeRadioModalBtn.addEventListener("click", () => {
-    RadioModal.style.display = "none";
+    radioModal.style.display = "none";
   });
 
   window.addEventListener("click", (event) => {
@@ -90,6 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (event.target === instructionsModal) {
       instructionsModal.style.display = "none";
+    }
+    if (event.target === radioModal) {
+      radioModal.style.display = "none";
     }
   });
 
