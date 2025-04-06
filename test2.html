@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,6 +39,110 @@
             allowfullscreen>
         </iframe>
     </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Custom YouTube Playlist Player</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 2rem;
+        }
+
+        #player {
+            margin: auto;
+            width: 80%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .controls button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            background-color: #0077ff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #005fcc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="player"></div>
+
+    <div class="controls">
+        <button onclick="prevVideo()">⏮️ Prev</button>
+        <button onclick="playVideo()">▶️ Play</button>
+        <button onclick="pauseVideo()">⏸️ Pause</button>
+        <button onclick="nextVideo()">⏭️ Next</button>
+    </div>
+
+    <!-- Load YouTube Iframe API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <script>
+        let player;
+
+        // This function gets called automatically by the YouTube API when it's ready
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                playerVars: {
+                    listType: 'playlist',
+                    list: 'PLdFpHXXZJ3ANbMZT9QGrWEQNSyDHK4z_i', // 🔁 Replace with your playlist ID
+                    controls: 0,      // Hide default controls
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Optional: Auto-play when ready
+            // event.target.playVideo();
+        }
+
+        function playVideo() {
+            player.playVideo();
+        }
+
+        function pauseVideo() {
+            player.pauseVideo();
+        }
+
+        function nextVideo() {
+            player.nextVideo();
+        }
+
+        function prevVideo() {
+            player.previousVideo();
+        }
+    </script>
+
 </body>
 
 </html>
