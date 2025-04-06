@@ -4,13 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Animation CSS and JavaScript</title>
+    <title>Highway Havoc</title>
 
     <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
 
+    <div class="button-container">
+        <button id="open-customize-modal" class="open-customize-modal">Customize</button>
+        <button id="open-instructions-modal" class="open-instructions-modal">?</button>
+    </div>
+
+    <div id="customize-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <div class="car-selection">
+                <label for="car-model">Select Car Model:</label>
+                <select id="car-model">
+                    <option value="car1" selected>Car Model 1</option>
+                    <option value="car2">Car Model 2</option>
+                </select>
+            </div>
+            <div class="audio-controls">
+                <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/videoseries?si=QrKfQ2-vU9a4EFGZ&amp;list=PLdFpHXXZJ3ANbMZT9QGrWEQNSyDHK4z_i"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <h3>Audio Controls</h3>
+                <button id="play-audio">Play</button>
+                <button id="pause-audio">Pause</button>
+                <button id="mute-audio">Mute</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="instructions-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-instructions-modal" class="close">&times;</span>
+            <h2>Instructions</h2>
+            <p>Use the arrow keys to move the car:</p>
+            <ul>
+                <li><strong>Right Arrow:</strong> Move right</li>
+                <li><strong>Left Arrow:</strong> Move left</li>
+                <li><strong>Up Arrow:</strong> Move up</li>
+                <li><strong>Down Arrow:</strong> Move down</li>
+            </ul>
+            <p>Press the space bar to pause/resume the animation.</p>
+        </div>
+    </div>
 
     <div class="container">
         <div class="sky">
@@ -18,16 +61,20 @@
             <div class="track"></div>
             <div class="car">
                 <div class="wheel wheel1">
-                    <img src="./assets/car_wheel_left.png" alt="">
+                    <img src="./assets/car1_wheel_left.png" alt="">
                 </div>
                 <div class="wheel wheel2">
-                    <img src="./assets/car_wheel_right.png" alt="">
+                    <img src="./assets/car1_wheel_right.png" alt="">
                 </div>
             </div>
+
         </div>
     </div>
 
+    <div id="player"></div>
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="index.js"></script>
+    <script src="youtubePlayer.js"></script>
 </body>
 
 </html>

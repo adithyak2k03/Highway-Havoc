@@ -8,25 +8,93 @@ body {
   /* animation: shakebody linear 6s infinite; */
 }
 
+.button-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between the buttons */
+  z-index: 1000; /* Ensure buttons are on top of other elements */
+}
+
+.open-customize-modal,
+.open-instructions-modal {
+  /* position: fixed; */
+  top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* z-index: 1000; */
+}
+
+.open-customize-modal {
+  right: 10px;
+}
+
+.open-instructions-modal {
+  right: 120px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .sky {
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   background-image: url(./assets/background.jpg);
   background-repeat: no-repeat;
-  position: absolute;
-  left: 0;
+  /* position: absolute; */
+  /* left: 0; */
   background-attachment: fixed;
   background-position: center;
+  background-size: cover;
 }
 
 .trees {
-  height: 100vh;
-  width: 100%;
+  height: 150vh;
+  /* width: 100%; */
+  width: 800vw;
   background-image: url(./assets/trees.png);
   /* background-size: cover; */
   position: absolute;
   top: -320px;
-  width: 800vw;
   background-repeat: repeat-x;
   animation: carMove linear 50s infinite;
 }
@@ -43,8 +111,8 @@ body {
 
 .car {
   height: 100px;
-  width: 380px;
-  background-image: url(./assets/car_body.png);
+  width: 407px;
+  background-image: url(./assets/car1_body.png);
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
@@ -54,18 +122,18 @@ body {
 }
 
 .wheel1 img {
-  width: 77px;
+  width: 90px;
+  top: 35px;
+  left: 22px;
   position: relative;
-  top: 42px;
-  left: 42px;
   animation: wheelRotation linear 0.16s infinite;
 }
 
 .wheel2 img {
-  width: 77px;
+  width: 90px;
+  top: -57px;
+  left: 275px;
   position: relative;
-  top: -39px;
-  left: 235px;
   animation: wheelRotation linear 0.16s infinite;
 }
 
@@ -107,4 +175,18 @@ body {
   100% {
     transform: translateY(-10px);
   }
+}
+
+.audio-controls {
+  margin-top: 20px;
+}
+
+.audio-controls button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
