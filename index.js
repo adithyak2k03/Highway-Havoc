@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const openCustomizeModalBtn = document.getElementById("open-customize-modal");
   const customizeModal = document.getElementById("customize-modal");
-  const closeCustomizeModalBtn = document.getElementById("close-modal");
+  const closeCustomizeModalBtn = document.getElementById(
+    "close-customize-modal"
+  );
 
   const openInstructionsModalBtn = document.getElementById(
     "open-instructions-modal"
@@ -21,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeInstructionsModalBtn = document.getElementById(
     "close-instructions-modal"
   );
+
+  const openRadioModalBtn = document.getElementById("open-radio-modal");
+  const RadioModal = document.getElementById("radio-modal");
+  const closeRadioModalBtn = document.getElementById("close-radio-modal");
 
   if (sky) {
     sky.style.left = "0px"; // Reset clouds if they exist
@@ -68,6 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeInstructionsModalBtn.addEventListener("click", () => {
     instructionsModal.style.display = "none";
+  });
+
+  openRadioModalBtn.addEventListener("click", () => {
+    RadioModal.style.display = "block";
+  });
+
+  closeRadioModalBtn.addEventListener("click", () => {
+    RadioModal.style.display = "none";
   });
 
   window.addEventListener("click", (event) => {

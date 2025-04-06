@@ -19,7 +19,8 @@ body {
 }
 
 .open-customize-modal,
-.open-instructions-modal {
+.open-instructions-modal,
+.open-radio-modal {
   /* position: fixed; */
   top: 10px;
   padding: 10px 20px;
@@ -31,13 +32,13 @@ body {
   /* z-index: 1000; */
 }
 
-.open-customize-modal {
+/* .open-customize-modal {
   right: 10px;
 }
 
 .open-instructions-modal {
   right: 120px;
-}
+} */
 
 .modal {
   display: none;
@@ -59,6 +60,10 @@ body {
   width: 80%;
   max-width: 400px;
   border-radius: 5px;
+}
+
+#radio-modal > .modal-content {
+  margin: 1% auto;
 }
 
 .close {
@@ -177,16 +182,56 @@ body {
   }
 }
 
-.audio-controls {
-  margin-top: 20px;
+#player {
+  margin: auto;
+  width: 80%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
 }
 
-.audio-controls button {
-  margin-right: 10px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.controls button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  background-color: #0077ff;
+  color: white;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #005fcc;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+input[type="range"] {
+  width: 150px;
+}
+
+#video-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-top: 1rem;
+}
+
+.mute-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
 }

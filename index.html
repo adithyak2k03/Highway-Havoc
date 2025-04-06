@@ -13,12 +13,13 @@
 
     <div class="button-container">
         <button id="open-customize-modal" class="open-customize-modal">Customize</button>
-        <button id="open-instructions-modal" class="open-instructions-modal">?</button>
+        <button id="open-radio-modal" class="open-radio-modal">Radio</button>
+        <button id="open-instructions-modal" class="open-instructions-modal">Help</button>
     </div>
 
     <div id="customize-modal" class="modal">
         <div class="modal-content">
-            <span id="close-modal" class="close">&times;</span>
+            <span id="close-customize-modal" class="close">&times;</span>
             <div class="car-selection">
                 <label for="car-model">Select Car Model:</label>
                 <select id="car-model">
@@ -26,14 +27,28 @@
                     <option value="car2">Car Model 2</option>
                 </select>
             </div>
-            <div class="audio-controls">
-                <iframe
-                    src="https://www.youtube.com/embed/videoseries?list=PLdFpHXXZJ3ANbMZT9QGrWEQNSyDHK4z_i&controls=1&autoplay=0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
         </div>
+    </div>
+
+    <div id="radio-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-radio-modal" class="close">&times;</span>
+            <div id="player"></div>
+
+            <div class="controls">
+                <button onclick="prevVideo()">⏮️ Prev</button>
+                <button id="playPauseBtn" onclick="togglePlayPause()">▶️ Play</button>
+                <button onclick="nextVideo()">⏭️ Next</button>
+                <div class="volume-control">
+                    <span id="muteIcon" class="mute-icon" onclick="toggleMute()">🔊</span>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="100"
+                        onchange="changeVolume(this.value)">
+                </div>
+            </div>
+
+            <div id="video-title">Loading title...</div>
+        </div>
+    </div>
     </div>
 
     <div id="instructions-modal" class="modal">

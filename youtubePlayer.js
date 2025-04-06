@@ -1,31 +1,17 @@
 let player;
+let isPlaying = false;
 let isMuted = false;
-
-// This function creates an <iframe> (and YouTube player) after the API code downloads.
-// function onYouTubeIframeAPIReady() {
-//   player = new YT.Player("player", {
-//     height: "200", // Minimum height to ensure it is visible and functional
-//     width: "200", // Minimum width to ensure it is visible and functional
-//     playerVars: {
-//       listType: "playlist",
-//       list: "PLdFpHXXZJ3ANbMZT9QGrWEQNSyDHK4z_i", // Your YouTube playlist ID
-//       autoplay: 0, // Autoplay set to 0 to comply with browser restrictions
-//       controls: 0,
-//       loop: 1,
-//       shuffle: 1,
-//     },
-//     events: {
-//       onReady: onPlayerReady,
-//       onStateChange: onPlayerStateChange,
-//     },
-//   });
-// }
+let previousVolume = 100; // default
 
 function onYouTubeIframeAPIReady() {
   player = new YT.Player("player", {
     height: "360",
     width: "640",
-    videoId: "LMuDrj5BpM0", // Sample video ID
+    playerVars: {
+      listType: "playlist",
+      list: "PLdFpHXXZJ3ANbMZT9QGrWEQNSyDHK4z_i", // 🔁 Replace with your playlist ID
+      controls: 0,
+    },
     events: {
       onReady: onPlayerReady,
       onStateChange: onPlayerStateChange,
@@ -33,37 +19,78 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-// The API will call this function when the video player is ready.
 function onPlayerReady(event) {
-  // Event listeners for play, pause, and mute buttons
-  document.getElementById("play-audio").addEventListener("click", () => {
-    player.playVideo();
-  });
-
-  document.getElementById("pause-audio").addEventListener("click", () => {
-    player.pauseVideo();
-  });
-
-  document.getElementById("mute-audio").addEventListener("click", () => {
-    isMuted = !isMuted;
-    if (isMuted) {
-      player.mute();
-      document.getElementById("mute-audio").textContent = "Unmute";
-    } else {
-      player.unMute();
-      document.getElementById("mute-audio").textContent = "Mute";
-    }
-  });
+  player.setVolume(previousVolume);
+  document.getElementById("volumeSlider").value = previousVolume;
+  updateVideoTitle();
 }
 
-// The API calls this function when the player's state changes.
 function onPlayerStateChange(event) {
-  if (event.data == YT.PlayerState.ENDED) {
+  if (event.data === YT.PlayerState.PLAYING) {
+    isPlaying = true;
+    document.getElementById("playPauseBtn").innerText = "⏸️ Pause";
+  } else if (
+    event.data === YT.PlayerState.PAUSED ||
+    event.data === YT.PlayerState.ENDED
+  ) {
+    isPlaying = false;
+    document.getElementById("playPauseBtn").innerText = "▶️ Play";
+  }
+
+  updateVideoTitle();
+}
+
+function togglePlayPause() {
+  if (isPlaying) {
+    player.pauseVideo();
+  } else {
     player.playVideo();
   }
 }
 
-// Stop the video
-function stopVideo() {
-  player.stopVideo();
+function nextVideo() {
+  player.nextVideo();
+}
+
+function prevVideo() {
+  player.previousVideo();
+}
+
+function changeVolume(val) {
+  val = parseInt(val);
+  player.setVolume(val);
+
+  if (val === 0) {
+    isMuted = true;
+    document.getElementById("muteIcon").innerText = "🔇";
+  } else {
+    isMuted = false;
+    document.getElementById("muteIcon").innerText = "🔊";
+    previousVolume = val; // update last good volume
+  }
+}
+
+function toggleMute() {
+  if (isMuted) {
+    player.unMute();
+    isMuted = false;
+    player.setVolume(previousVolume);
+    document.getElementById("volumeSlider").value = previousVolume;
+    document.getElementById("muteIcon").innerText = "🔊";
+  } else {
+    previousVolume = player.getVolume();
+    player.mute();
+    isMuted = true;
+    player.setVolume(0);
+    document.getElementById("volumeSlider").value = 0;
+    document.getElementById("muteIcon").innerText = "🔇";
+  }
+}
+
+function updateVideoTitle() {
+  setTimeout(() => {
+    const videoData = player.getVideoData();
+    document.getElementById("video-title").innerText =
+      videoData.title || "No Title";
+  }, 500);
 }
